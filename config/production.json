@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://admin-sparsh:shatep29@mydatabase.nxzal.mongodb.net/contact-keeper?retryWrites=true&w=majority",
+    "jwtsecret" : "secret"
+}
