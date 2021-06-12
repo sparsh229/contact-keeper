@@ -1,6 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
-const Register = () => {
+import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/auth/authContext";
+const Register = (props) => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+    if (error === "User already exists") {
+      setAlert(error, "error");
+      clearErrors();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, isAuthenticated, props.history]);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -13,7 +29,17 @@ const Register = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Register Submit");
+    if (name === "" || email === "" || password === "") {
+      setAlert("Please enter all fields", "warning");
+    } else if (password !== password2) {
+      setAlert("Passwords do not match", "error");
+    } else {
+      register({
+        name,
+        email,
+        password,
+      });
+    }
   };
   return (
     <div

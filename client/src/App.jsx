@@ -9,23 +9,33 @@ import Navbar from "./components/layout/Navbar";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
 import { Container } from "@material-ui/core";
+import AlertState from "./context/alert/AlertState";
+import Alerts from "./components/layout/Alerts";
+import setAuthToken from "./utils/setAuthToken";
+import PrivateRoute from "./components/routing/PrivateRoute";
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 const App = () => {
   return (
     <AuthState>
       <ContactState>
-        <Router>
-          <Fragment>
-            <Navbar />
-            <Container maxWidth="lg">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-              </Switch>
-            </Container>
-          </Fragment>
-        </Router>
+        <AlertState>
+          <Router>
+            <Fragment>
+              <Navbar />
+              <Container maxWidth="lg">
+                <Alerts />
+                <Switch>
+                  <PrivateRoute exact path="/" component={Home} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+                </Switch>
+              </Container>
+            </Fragment>
+          </Router>
+        </AlertState>
       </ContactState>
     </AuthState>
   );

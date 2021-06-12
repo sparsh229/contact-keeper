@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: "380px",
+    width: "360px",
   },
   form: {
     marginBottom: "20px",

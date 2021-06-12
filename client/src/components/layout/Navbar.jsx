@@ -1,14 +1,48 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
-import PropTypes from "prop-types";
-const Navbar = ({ title, icon }) => {
+import AuthContext from "../../context/auth/authContext";
+const Navbar = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, logout, user } = authContext;
+  const onLogout = () => {
+    logout();
+  };
+  const authLinks = (
+    <Fragment>
+      <li style={{ paddingRight: "20px" }}>
+        Hello , {user && user.name.slice(0, 6)}
+      </li>
+      <li>
+        <a onClick={onLogout} style={{ color: "white" }} href="#!">
+          <i className="fas fa-sign-out-alt"></i>{" "}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </Fragment>
+  );
+  const guestLinks = (
+    <Fragment>
+      <a style={{ color: "white" }} href="/register">
+        <li style={{ marginRight: "20px" }}>Register</li>
+      </a>
+      <a style={{ color: "white" }} href="/login">
+        <li style={{ marginRight: "20px" }}>Login</li>
+      </a>
+    </Fragment>
+  );
   return (
     <div className="bg-primary">
       <AppBar position="static">
         <Toolbar variant="dense">
           <h2>
-            <i style={{ paddingRight: "10px" }} className={icon} />
-            {title}
+            <i
+              style={{ paddingRight: "10px" }}
+              className="fas fa-id-card-alt"
+            />
+            <a style={{ color: "white" }} href="/">
+              {" "}
+              <span className="hide-sm">Contact-Keeper</span>
+            </a>
           </h2>
           <ul
             style={{
@@ -19,30 +53,11 @@ const Navbar = ({ title, icon }) => {
               right: "20px",
             }}
           >
-            <a style={{ color: "white" }} href="/">
-              <li style={{ marginRight: "20px" }}>Home</li>
-            </a>
-            <a style={{ color: "white" }} href="/about">
-              <li style={{ marginRight: "20px" }}>About</li>
-            </a>
-            <a style={{ color: "white" }} href="/register">
-              <li style={{ marginRight: "20px" }}>Register</li>
-            </a>
-            <a style={{ color: "white" }} href="/login">
-              <li style={{ marginRight: "20px" }}>Login</li>
-            </a>
+            {isAuthenticated ? authLinks : guestLinks}
           </ul>
         </Toolbar>
       </AppBar>
     </div>
   );
-};
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-};
-Navbar.defaultProps = {
-  title: "Contact Keeper",
-  icon: "fas fa-id-card-alt",
 };
 export default Navbar;
