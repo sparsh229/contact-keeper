@@ -19,8 +19,18 @@ const Navbar = ({ title, icon }) => {
               right: "20px",
             }}
           >
-            <li style={{ marginRight: "20px" }}>Home</li>
-            <li style={{ marginRight: "20px" }}>About</li>
+            <a style={{ color: "white" }} href="/">
+              <li style={{ marginRight: "20px" }}>Home</li>
+            </a>
+            <a style={{ color: "white" }} href="/about">
+              <li style={{ marginRight: "20px" }}>About</li>
+            </a>
+            <a style={{ color: "white" }} href="/register">
+              <li style={{ marginRight: "20px" }}>Register</li>
+            </a>
+            <a style={{ color: "white" }} href="/login">
+              <li style={{ marginRight: "20px" }}>Login</li>
+            </a>
           </ul>
         </Toolbar>
       </AppBar>

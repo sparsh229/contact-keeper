@@ -26,19 +26,20 @@ const ContactItem = ({ contact }) => {
   return (
     <Card elevation={4} className={classes.card}>
       <CardContent>
-        {type === "personal" ? (
-          <Avatar className={classes.avatarPink}>{name.charAt(0)}</Avatar>
-        ) : (
-          <Avatar className={classes.avatarBlue}>{name.charAt(0)}</Avatar>
-        )}
-        <h3 className="text-primary text-left">
-          {name}{" "}
-          <Chip
-            variant="outlined"
-            label={type.charAt(0).toUpperCase() + type.slice(1)}
-            color={labelcolor}
-          />
-        </h3>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          {type === "personal" ? (
+            <Avatar className={classes.avatarPink}>{name.charAt(0)}</Avatar>
+          ) : (
+            <Avatar className={classes.avatarBlue}>{name.charAt(0)}</Avatar>
+          )}
+          <div style={{ paddingTop: "5px" }}>
+            <Chip
+              label={type.charAt(0).toUpperCase() + type.slice(1)}
+              color={labelcolor}
+            />
+          </div>
+        </div>
+        <h3 className="text-primary text-left">{name} </h3>
         <ul className="list">
           {email && (
             <li>

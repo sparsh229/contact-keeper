@@ -2,25 +2,32 @@ import React, { Fragment } from "react";
 import "./App.css";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import ContactState from "./context/contact/ContactState";
+import AuthState from "./context/auth/AuthState";
 import { Container } from "@material-ui/core";
 const App = () => {
   return (
-    <ContactState>
-      <Router>
-        <Fragment>
-          <Navbar />
-          <Container maxWidth="lg">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/about" component={About} />
-            </Switch>
-          </Container>
-        </Fragment>
-      </Router>
-    </ContactState>
+    <AuthState>
+      <ContactState>
+        <Router>
+          <Fragment>
+            <Navbar />
+            <Container maxWidth="lg">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+              </Switch>
+            </Container>
+          </Fragment>
+        </Router>
+      </ContactState>
+    </AuthState>
   );
 };
 
