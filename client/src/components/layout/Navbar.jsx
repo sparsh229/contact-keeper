@@ -1,16 +1,27 @@
 import React from "react";
-import { AppBar } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { AppBar, Toolbar } from "@material-ui/core";
 import PropTypes from "prop-types";
 const Navbar = ({ title, icon }) => {
   return (
     <div className="bg-primary">
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <h2>
             <i style={{ paddingRight: "10px" }} className={icon} />
             {title}
           </h2>
+          <ul
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "absolute",
+              right: "20px",
+            }}
+          >
+            <li style={{ marginRight: "20px" }}>Home</li>
+            <li style={{ marginRight: "20px" }}>About</li>
+          </ul>
         </Toolbar>
       </AppBar>
     </div>

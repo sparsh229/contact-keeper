@@ -1,0 +1,86 @@
+import React, { useContext } from "react";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Chip,
+  Avatar,
+} from "@material-ui/core";
+import ContactContext from "../../context/contact/contactContext";
+import PropTypes from "prop-types";
+import useStyles from "./ContactItemStyles";
+const ContactItem = ({ contact }) => {
+  const contactContext = useContext(ContactContext);
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
+  const { id, name, email, phone, type } = contact;
+  let labelcolor = "secondary";
+  if (type === "professional") {
+    labelcolor = "primary";
+  }
+  const onDelete = () => {
+    deleteContact(id);
+    clearCurrent();
+  };
+  const classes = useStyles();
+  return (
+    <Card elevation={4} className={classes.card}>
+      <CardContent>
+        {type === "personal" ? (
+          <Avatar className={classes.avatarPink}>{name.charAt(0)}</Avatar>
+        ) : (
+          <Avatar className={classes.avatarBlue}>{name.charAt(0)}</Avatar>
+        )}
+        <h3 className="text-primary text-left">
+          {name}{" "}
+          <Chip
+            variant="outlined"
+            label={type.charAt(0).toUpperCase() + type.slice(1)}
+            color={labelcolor}
+          />
+        </h3>
+        <ul className="list">
+          {email && (
+            <li>
+              <i
+                style={{ marginRight: "10px" }}
+                className="fas fa-envelope-open"
+              ></i>
+              {email}
+            </li>
+          )}
+          {phone && (
+            <li>
+              <i style={{ marginRight: "10px" }} className="fas fa-phone"></i>
+              {phone}
+            </li>
+          )}
+        </ul>
+        <CardActions>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              setCurrent(contact);
+            }}
+            size="small"
+          >
+            Edit
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={onDelete}
+            size="small"
+          >
+            Delete
+          </Button>
+        </CardActions>
+      </CardContent>
+    </Card>
+  );
+};
+ContactItem.propTypes = {
+  contact: PropTypes.object.isRequired,
+};
+export default ContactItem;
