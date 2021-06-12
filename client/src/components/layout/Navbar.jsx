@@ -1,11 +1,15 @@
 import React, { Fragment, useContext } from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
 import AuthContext from "../../context/auth/authContext";
+import ContactContext from "../../context/contact/contactContext";
 const Navbar = () => {
   const authContext = useContext(AuthContext);
+  const contactContext = useContext(ContactContext);
   const { isAuthenticated, logout, user } = authContext;
+  const { clearContacts } = contactContext;
   const onLogout = () => {
     logout();
+    clearContacts();
   };
   const authLinks = (
     <Fragment>

@@ -13,18 +13,25 @@ import useStyles from "./ContactItemStyles";
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
   let labelcolor = "secondary";
   if (type === "professional") {
     labelcolor = "primary";
   }
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
   const classes = useStyles();
   return (
-    <Card elevation={4} className={classes.card}>
+    <Card
+      style={{
+        backgroundImage:
+          "url('https://www.transparenttextures.com/patterns/checkered-pattern.png')",
+      }}
+      elevation={6}
+      className={classes.card}
+    >
       <CardContent>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           {type === "personal" ? (
