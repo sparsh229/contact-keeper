@@ -398,6 +398,7 @@ table th {
 /* Mobile Styles */
 @media (max-width: 700px) {
   .login {
+    margin-top: 120px;
     width: 80%;
     position: absolute;
     top: 30%;
@@ -405,6 +406,7 @@ table th {
     transform: translate(-50%, -50%);
   }
   .register {
+    margin-top: 170px;
     width: 80%;
     position: absolute;
     top: 30%;
