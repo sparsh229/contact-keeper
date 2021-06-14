@@ -89,11 +89,22 @@ img {
 .text-left {
   text-align: left;
 }
-
-/* Cards */
-.card {
+.login {
+  margin-top: 100px;
+  width: 30%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
+.register {
+  margin-top: 150px;
+  width: 30%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /* List */
 .list {
   margin: 0.5rem 0;
@@ -386,6 +397,20 @@ table th {
 
 /* Mobile Styles */
 @media (max-width: 700px) {
+  .login {
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .register {
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   .hide-sm {
     display: none;
   }

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
+import BackImg from "../layout/BackImg";
 const Login = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
@@ -37,15 +38,8 @@ const Login = (props) => {
     }
   };
   return (
-    <div
-      style={{
-        width: "30%",
-        position: "absolute",
-        top: "30%",
-        left: "50%",
-        transform: "translate(-50%,-50%)",
-      }}
-    >
+    <div className="login">
+      <BackImg />
       <form
         style={{ marginTop: "30px" }}
         onSubmit={onSubmit}

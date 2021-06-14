@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
+import BackImg from "../layout/BackImg";
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
@@ -42,15 +43,9 @@ const Register = (props) => {
     }
   };
   return (
-    <div
-      style={{
-        width: "30%",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%,-50%)",
-      }}
-    >
+    <div className="register">
+      {" "}
+      <BackImg />
       <form
         style={{ marginTop: "30px" }}
         onSubmit={onSubmit}
